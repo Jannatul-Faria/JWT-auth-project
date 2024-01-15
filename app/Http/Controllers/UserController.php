@@ -11,9 +11,63 @@ use App\Helper\JWTToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use GrahamCampbell\ResultType\Success;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
+
+// =============================================================
+    //                       View Pages Function
+    // =============================================================
+
+public function loginPage():View{
+        return view('Backend.Pages.auth.login-page');
+}
+public function registrationPage():View{
+        return view('Backend.Pages.auth.registration-page');
+}
+public function SendOtpPage():View{
+        return view('Backend.Pages.auth.send-otp-page');
+}
+public function OtpVerifyPage():View{
+        return view('Backend.Pages.auth.verify-otp-page');
+}
+public function ResetPasswordPage():View{
+        return view('Backend.Pages.auth.reset-pass-page');
+}
+
+public function dashboardPage():View{
+        return view('Backend.Pages.dashboard.dashboard-page');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // =============================================================
+    //                       Api Function
+    // =============================================================
 
     // registration :
     public function userRegistration(Request $request){
@@ -61,8 +115,8 @@ class UserController extends Controller
            return response()->json([
                 'status'=>'success',
                 'message'=> 'User Login Successfully.',
-                'token'=>$token
-            ]);
+               
+            ])->cookie('token', $token, 60*24*30);
         
      }else{
             return response()->json([
@@ -73,7 +127,7 @@ class UserController extends Controller
      }
 
 
-
+// send otp
      public function SendOtp(Request $request){
         $email = $request->input('email');
         $otp = rand(1000, 9999);
@@ -96,6 +150,7 @@ class UserController extends Controller
             ]);
         }
      }
+    //  verify otp
      public function OtpVerify(Request $request){
          $email = $request->input('email');
         $otp = $request->input('otp');
@@ -128,6 +183,7 @@ class UserController extends Controller
 
      }
 
+    //  reset pass
       public function ResetPassword(Request $request){
         try {
             $email = $request->header('email');
