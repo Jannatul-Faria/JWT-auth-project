@@ -5,6 +5,7 @@ namespace App\Helper;
 use Exception;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use GuzzleHttp\Psr7\Request;
 
 class JWTToken{
     public static function CreateToken($email):string{
@@ -12,13 +13,23 @@ class JWTToken{
         $payload = [
             'iss'=> "laravel-token",
             'iat'=>time(),
-            'exp'=>time()+36*36,
+            'exp'=>time()+60*60,
             'email'=> $email,
         ];
         return JWT::encode($payload, $key, 'HS256');
     }
 
-    public function VarifyToken($token):string{
+    public static function createTokenForPass( $email){
+        $key=env("JWT_KEY");
+        $payload = [
+            'iss'=> "laravel-token",
+            'iat'=>time(),
+            'exp'=>time()+60*5,
+            'email'=> $email,
+        ];
+        return JWT::encode($payload, $key, 'HS256');
+    }
+    public static function VarifyToken($token):string{
 
         try {
              $key = env('JWT_KEY');

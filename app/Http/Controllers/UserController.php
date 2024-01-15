@@ -101,8 +101,19 @@ class UserController extends Controller
         $otp = $request->input('otp');
         $count = User::where('email', '=', $email)
             ->where('otp', '=', $otp)->count();
+
+
         if ($count == 1) {
-            
+            /// update 
+             User::where('email', '=', $email)->update(['otp'=> '0']);
+            // password reset token issue
+             $token = JWTToken::CreateToken($request->input('email'));
+           return response()->json([
+                'status'=>'success',
+                'message'=> 'User Login Successfully.',
+                'token'=>$token
+            ]);
+            // 
         
         }else{
              return response()->json([
@@ -116,5 +127,23 @@ class UserController extends Controller
 
 
      }
+
+      public function ResetPassword(Request $request){
+        try {
+            $email = $request->header('email');
+            $password = $request->input('password');
+            User::where('email',"=",$email)->update(['password' => $password]);
+                 return response()->json([
+                'status'=>'success',
+                'message'=> 'request successfull'
+            ]);
+        } catch (Exception $e) {
+                 return response()->json([
+                'status'=>'failed',
+                'message'=> 'something is wrong'
+            ]);
+        }
+      }
      
 }
+ 

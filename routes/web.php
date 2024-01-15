@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\TokenVerifyMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +20,6 @@ Route::post('/user-registration', [UserController::class, 'userRegistration']);
 Route::post('/user-login', [UserController::class, 'userLogin']);
 
 Route::post('/SendOtp', [UserController::class, 'SendOtp']);
+Route::post('/OtpVerify', [UserController::class, 'OtpVerify']);
+Route::post('/ResetPassword', [UserController::class, 'ResetPassword'])->Middleware([TokenVerifyMiddleware::class]);
+
