@@ -15,27 +15,28 @@
     </div>
 </div>
 
-{{-- <script>
-   async function VerifyEmail() {
-        let email = document.getElementById('email').value;
-        if(email.length === 0){
-           errorToast('Please enter your email address')
-        }
-        else{
+<script>
+    async function VerifyEmail() {
+        let email = document.getElementById('email');
+
+        if (email.length === 0) {
+            errorToast('Email requried');
+        } else {
             showLoader();
-            let res = await axios.post('/send-otp', {email: email});
+            let res = await axios.post("/Send-Otp", {
+                email: email
+            });
             hideLoader();
-            if(res.status===200 && res.data['status']==='success'){
-                successToast(res.data['message'])
+
+            if (res.status === 200 && res.data['status'] === 'success') {
+                successToast(res.data['message']);
                 sessionStorage.setItem('email', email);
-                setTimeout(function (){
-                    window.location.href = '/verifyOtp';
+                setTimeout(function() {
+                    window.location.href = "/otpVerify";
                 }, 1000)
-            }
-            else{
+            } else {
                 errorToast(res.data['message'])
             }
         }
-
     }
-</script> --}}
+</script>
