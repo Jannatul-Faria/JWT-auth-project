@@ -1,6 +1,6 @@
 @extends('layout.sidenav-layout')
 @section('content')
-    @include('components.invoice.invoice-list')
-    @include('components.invoice.invoice-delete')
-    @include('components.invoice.invoice-details')
+    @include('Backend.Component.invoice.invoice-list')
+    @include('Backend.Component.invoice.invoice-delete')
+    @include('Backend.Component.invoice.invoice-details')
 @endsection

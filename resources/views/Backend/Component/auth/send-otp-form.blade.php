@@ -17,19 +17,19 @@
 
 <script>
     async function VerifyEmail() {
-        let email = document.getElementById('email');
+        let email = document.getElementById('email').value;
 
         if (email.length === 0) {
-            errorToast('Email requried');
+            errorToast('Email requried')
         } else {
             showLoader();
-            let res = await axios.post("/Send-Otp", {
+            let res = await axios.post("/send-Otp", {
                 email: email
             });
             hideLoader();
 
             if (res.status === 200 && res.data['status'] === 'success') {
-                successToast(res.data['message']);
+                successToast(res.data['message'])
                 sessionStorage.setItem('email', email);
                 setTimeout(function() {
                     window.location.href = "/otpVerify";

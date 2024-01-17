@@ -1,5 +1,4 @@
-@extends('layout.sidenav-layout')
+@extends('Backend.layout.sidenav-layout')
 @section('content')
-    @include('components.dashboard.profile-form')
+    @include('Backend.Component.dashboard.profile-form')
 @endsection
-

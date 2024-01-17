@@ -1,7 +1,7 @@
 @extends('layout.sidenav-layout')
 @section('content')
-    @include('components.product.product-list')
-    @include('components.product.product-delete')
-    @include('components.product.product-create')
-    @include('components.product.product-update')
+    @include('Backend.Component.product.product-list')
+    @include('Backend.Component.product.product-delete')
+    @include('Backend.Component.product.product-create')
+    @include('Backend.Component.product.product-update')
 @endsection

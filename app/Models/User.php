@@ -19,7 +19,7 @@ class User extends Model
      * The attributes that should be hidden for serialization.
      */
     protected $hidden = [
-        'password',
+        // 'password',
         // 'otp',
 
     ];

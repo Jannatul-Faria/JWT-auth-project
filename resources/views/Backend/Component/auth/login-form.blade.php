@@ -44,7 +44,7 @@
                 successToast(res.data['message']);
                 window.location.href = "/dashboard";
             } else {
-                errorToast('unauthorize');
+                errorToast(res.data['message']);
             }
 
 

@@ -144,12 +144,12 @@
                                         </p>
                                         <span class="s1"></span>
                                         <p class="p2">
-                                            <strong class="st1">Email</strong>
+                                            <strong class="st1">Otp</strong>
 
                                         </p>
 
                                         <a href="" class="logo">
-                                            <strong class="st2">OTP</strong>{{ $otp }}
+                                            <strong class="st2">{{ $otp }}</strong>
                                         </a>
                                     </td>
                                 </tr>

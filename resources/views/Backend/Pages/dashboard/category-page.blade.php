@@ -1,7 +1,7 @@
 @extends('layout.sidenav-layout')
 @section('content')
-    @include('components.category.category-list')
-    @include('components.category.category-delete')
-    @include('components.category.category-create')
-    @include('components.category.category-update')
+    @include('Backend.Component.category.category-list')
+    @include('Backend.Component.category.category-delete')
+    @include('Backend.Component.category.category-create')
+    @include('Backend.Component.category.category-update')
 @endsection
