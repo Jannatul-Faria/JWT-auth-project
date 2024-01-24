@@ -18,15 +18,16 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="update-modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                <button onclick="Update()" id="update-btn" class="btn bg-gradient-success" >Update</button>
+                <button id="update-modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal"
+                    aria-label="Close">Close</button>
+                <button onclick="Update()" id="update-btn" class="btn bg-gradient-success">Update</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
+{{-- <script>
 
 
    async function FillUpUpdateForm(id){
@@ -69,4 +70,4 @@
 
 
 
-</script>
+</script> --}}
