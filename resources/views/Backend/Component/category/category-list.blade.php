@@ -7,14 +7,15 @@
                         <h4>Category</h4>
                     </div>
                     <div class="align-items-center col">
-                        <button class="text-dark float-end btn m-0 bg-info bg-opacity-20">Create</button>
+                        <button data-bs-toggle="modal" data-bs-target="#create-modal"
+                            class="float-end btn m-0 bg-gradient-info">Create</button>
                     </div>
                 </div>
                 <hr class="bg-info" />
                 <div class="table-responsive">
                     <table class="table" id="tableData">
                         <thead>
-                            <tr class="text-dark bg-info bg-lighten-xl">
+                            <tr class="text-dark bg-info bg-lighten-xl ">
                                 <th>No</th>
                                 <th>Category</th>
                                 <th>Action</th>
@@ -41,13 +42,16 @@
         let tableData = $('#tableData');
         let tableList = $('#tableList');
 
+        tableData.DataTable().destroy();
+        tableList.empty();
+
         res.data.forEach(function(item, index) {
             let row = `<tr>
                         <td>${index+1}</td>
                         <td>${item['name']}</td>
                         <td>
-                            <button class="btn btn-outline-success btn-sm">Edit</button>
-                            <button class="btn btn-outline-danger btn-sm">Delete</button>
+                            <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-info ">Edit</button>
+                            <button data-id="${item['id']}" class="btn deleteBtn btn-outline-danger btn-sm">Delete</button>
                             </td>
                     </tr>`
 
@@ -56,14 +60,35 @@
             tableList.append(row)
 
 
-        })
+        });
 
-        tableData.DataTable({
+        $('.editBtn').on('click', async function() {
+            let id = $(this).data('id');
+            await FillUpUpdateForm(id);
+            $("#update-modal").modal('show');
+
+
+
+        });
+        $('.deleteBtn').on('click', function() {
+            let id = $(this).data('id');
+            $('#delete-modal').modal('show');
+            $('#deleteID').val(id);
+        });
+
+        // tableData.DataTable({
+        //     order: [
+        //         [0, 'asc'] //'asyn'
+        //     ],
+        //     lengthMenu: [5, 10, 15, 20]
+        // })  
+        // you can also wrote this =>
+        let table = new DataTable('#tableData', {
             order: [
-                [0, 'asc'] //'asyn'
+                [0, 'asc']
             ],
             lengthMenu: [5, 10, 15, 20]
-        })
+        });
 
 
     }
@@ -75,22 +100,22 @@
 
 
 {{-- <script>
-getList();
-async function getList() {
+    getList();
+    async function getList() {
 
 
-    showLoader();
-    let res=await axios.get("/list-category");
-    hideLoader();
+        showLoader();
+        let res = await axios.get("/list-category");
+        hideLoader();
 
-    let tableList=$("#tableList");
-    let tableData=$("#tableData");
+        let tableList = $("#tableList");
+        let tableData = $("#tableData");
 
-    tableData.DataTable().destroy();
-    tableList.empty();
+        tableData.DataTable().destroy();
+        tableList.empty();
 
-    res.data.forEach(function (item,index) {
-        let row=`<tr>
+        res.data.forEach(function(item, index) {
+            let row = `<tr>
                     <td>${index+1}</td>
                     <td>${item['name']}</td>
                     <td>
@@ -98,27 +123,29 @@ async function getList() {
                         <button data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
                     </td>
                  </tr>`
-        tableList.append(row)
-    })
+            tableList.append(row)
+        })
 
-    $('.editBtn').on('click', async function () {
-           let id= $(this).data('id');
-           await FillUpUpdateForm(id)
-           $("#update-modal").modal('show');
+        $('.editBtn').on('click', async function() {
+            let id = $(this).data('id');
+            await FillUpUpdateForm(id)
+            $("#update-modal").modal('show');
 
 
-    })
+        })
 
-    $('.deleteBtn').on('click',function () {
-        let id= $(this).data('id');
-        $("#delete-modal").modal('show');
-        $("#deleteID").val(id);
-    })
+        $('.deleteBtn').on('click', function() {
+            let id = $(this).data('id');
+            $("#delete-modal").modal('show');
+            $("#deleteID").val(id);
+        })
 
-    new DataTable('#tableData',{
-       order:[[0,'desc']],
-       lengthMenu:[5,10,15,20,30]
-   });
+        new DataTable('#tableData', {
+            order: [
+                [0, 'desc']
+            ],
+            lengthMenu: [5, 10, 15, 20, 30]
+        });
 
-}
+    }
 </script> --}}

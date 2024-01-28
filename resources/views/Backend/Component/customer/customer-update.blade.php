@@ -25,68 +25,60 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="update-modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                <button onclick="Update()" id="update-btn" class="btn bg-gradient-success" >Update</button>
+                <button id="update-modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal"
+                    aria-label="Close">Close</button>
+                <button onclick="Update()" id="update-btn" class="btn bg-gradient-success">Update</button>
             </div>
         </div>
     </div>
 </div>
 
-
 <script>
-
-
-
-    async function FillUpUpdateForm(id){
-        document.getElementById('updateID').value=id;
+    async function FillUpUpdateForm(id) {
+        // alert(id);
+        document.getElementById('updateID').value = id;
         showLoader();
-        let res=await axios.post("/customer-by-id",{id:id})
+        let res = await axios.post("/id-customer", {
+            id: id
+        })
         hideLoader();
-        document.getElementById('customerNameUpdate').value=res.data['name'];
-        document.getElementById('customerEmailUpdate').value=res.data['email'];
-        document.getElementById('customerMobileUpdate').value=res.data['mobile'];
+        document.getElementById('customerNameUpdate').value = res.data['name'];
+        document.getElementById('customerEmailUpdate').value = res.data['email'];
+        document.getElementById('customerMobileUpdate').value = res.data['mobile'];
     }
 
 
     async function Update() {
-
-        let customerName = document.getElementById('customerNameUpdate').value;
-        let customerEmail = document.getElementById('customerEmailUpdate').value;
-        let customerMobile = document.getElementById('customerMobileUpdate').value;
-        let updateID = document.getElementById('updateID').value;
-
-
-        if (customerName.length === 0) {
-            errorToast("Customer Name Required !")
+        let customerNameUpdate = document.getElementById('customerNameUpdate').value;
+        let customerEmailUpdate = document.getElementById('customerEmailUpdate').value;
+        let customerMobileUpdate = document.getElementById('customerMobileUpdate').value;
+        let customerId = document.getElementById('updateID').value;
+        if (customerNameUpdate.length === 0) {
+            errorToast("customer name Required!")
         }
-        else if(customerEmail.length===0){
-            errorToast("Customer Email Required !")
+        if (customerEmailUpdate.length === 0) {
+            errorToast("customer email Required!")
         }
-        else if(customerMobile.length===0){
-            errorToast("Customer Mobile Required !")
-        }
-        else {
-
+        if (customerMobileUpdate.length === 0) {
+            errorToast("customer mobile Required!")
+        } else {
             document.getElementById('update-modal-close').click();
-
             showLoader();
-
-            let res = await axios.post("/update-customer",{name:customerName,email:customerEmail,mobile:customerMobile,id:updateID})
-
+            let res = await axios.post("/update-customer", {
+                name: customerNameUpdate,
+                email: customerEmailUpdate,
+                mobile: customerMobileUpdate,
+                id: customerId
+            })
             hideLoader();
 
-            if(res.status===200 && res.data===1){
-
-                successToast('Request completed');
-
-                document.getElementById("update-form").reset();
-
+            if (res.status == 200 && res.data === 1) {
+                successToast(" Update Successfully!")
                 await getList();
-            }
-            else{
-                errorToast("Request fail !")
+            } else {
+                errorToast("Update Failled!")
             }
         }
-    }
 
+    }
 </script>

@@ -25,6 +25,7 @@ function errorToast(msg) {
         className: "mb-5",
         style: {
             background: "red",
+           
         }
     }).showToast();
 }

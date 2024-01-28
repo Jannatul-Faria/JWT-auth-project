@@ -1,6 +1,6 @@
 <div class="modal animated zoomIn" id="create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md">
-        <div class="modal-content">
+    <div class=" modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content ">
             <div class="modal-header">
                 <h6 class="modal-title" id="exampleModalLabel">Create Category</h6>
             </div>
@@ -17,7 +17,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal"
+                <button id="modal-close" class=" btn bg-gradient-danger " data-bs-dismiss="modal"
                     aria-label="Close">Close</button>
                 <button onclick="Save()" id="save-btn" class="btn bg-gradient-success">Save</button>
             </div>
@@ -25,26 +25,33 @@
     </div>
 </div>
 
-
-{{-- <script>
+<script>
+    // document.getElementById('save-btn').addEventListener('click', async function Save() {})
     async function Save() {
         let categoryName = document.getElementById('categoryName').value;
         if (categoryName.length === 0) {
-            errorToast("Category Required !")
-        }
-        else {
-            document.getElementById('modal-close').click();
+            errorToast("Category Name Required")
+        } else {
+            document.getElementById("modal-close").click();
+
             showLoader();
-            let res = await axios.post("/create-category",{name:categoryName})
+            let res = await axios.post("/create-category", {
+                name: categoryName
+            })
             hideLoader();
-            if(res.status===201){
-                successToast('Request completed');
+
+            if (res.status === 201) {
+                successToast(' Request Completed');
                 document.getElementById("save-form").reset();
+
                 await getList();
+            } else {
+                errorToast("failled")
             }
-            else{
-                errorToast("Request fail !")
-            }
+
+
+
+
         }
     }
-</script> --}}
+</script>

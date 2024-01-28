@@ -5,20 +5,20 @@
 }
 .icon-nav:hover{
     transition: 0.3s;
-    color: #363B64;
+    color: #000000;
 }
 .icon-nav:active{
     border-radius: 50%;
     padding: 8px;
     transition: 0.3s;
-    color: #363B64;
+    color: #000000;
     background:  rgba(0, 0, 0, 0.16);
 }
 .icon-nav-img{
     cursor: pointer;
     border-radius: 50%;
-    width: 35px ;
-    height: 35px ;
+    width: 40px ;
+    height:40px ;
     object-fit: cover;
 }
 .icon-nav-img-lg{
@@ -97,12 +97,12 @@
 
 .nav-logo-sm{
     width: auto;
-    height: 25px;
+    height: 30px;
 }
 
 .nav-logo {
-    width: auto;
-    height: 30px;
+    width: 120px;
+    height: auto;
 }
 
 
@@ -112,33 +112,33 @@
     width: 100% !important;
 }
 .side-bar-item:hover{
-    border-left: 4px solid #CB0C9F;
+    border-left: 4px solid #0eb7eb;
     transition: 0.2s;
-    background-color: #F3D9EC;
+    background-color: rgba(208, 237, 247, 0.808);
 }
 .side-bar-item:hover .side-bar-item-icon {
-    color: #363B64;
+    color: #000000;
 }
 .side-bar-item:hover .side-bar-item-caption {
-    color: #363B64;
+    color: #000000;
 }
 .side-bar-item-active{
-    border-left: 4px solid #CB0C9F;
-    background-color:#F3D9EC;
+    border-left: 4px solid #0eb7eb;
+    background-color:rgba(125, 218, 247, 0.808);
 }
 .side-bar-item-icon{
     font-size: 18px;
     margin-left: 10px;
     margin-right: 10px;
     font-weight: 500;
-    color: #363B64;
+    color: #000000;
 }
 .side-bar-item-caption{
     font-family: 'Poppins', sans-serif ;
     font-size: 13px;
     margin-left: 5px;
     font-weight: 500;
-    color: #363B64;
+    color: #000000;
 }
 
 

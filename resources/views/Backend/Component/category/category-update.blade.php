@@ -11,7 +11,7 @@
                             <div class="col-12 p-1">
                                 <label class="form-label">Category Name *</label>
                                 <input type="text" class="form-control" id="categoryNameUpdate">
-                                <input class="d-none" id="updateID">
+                                <input class="" id="updateID">
                             </div>
                         </div>
                     </div>
@@ -26,48 +26,40 @@
     </div>
 </div>
 
-
-{{-- <script>
-
-
-   async function FillUpUpdateForm(id){
-        document.getElementById('updateID').value=id;
+<script>
+    async function FillUpUpdateForm(id) {
+        // alert(id);
+        document.getElementById('updateID').value = id;
         showLoader();
-        let res=await axios.post("/category-by-id",{id:id})
+        let res = await axios.post("/id-category", {
+            id: id
+        })
         hideLoader();
-        document.getElementById('categoryNameUpdate').value=res.data['name'];
+        document.getElementById('categoryNameUpdate').value = res.data['name'];
     }
+
 
     async function Update() {
-
-        let categoryName = document.getElementById('categoryNameUpdate').value;
-        let updateID = document.getElementById('updateID').value;
-
-        if (categoryName.length === 0) {
-            errorToast("Category Required !")
-        }
-        else{
+        let categoryNameUpdate = document.getElementById('categoryNameUpdate').value;
+        let categoryId = document.getElementById('updateID').value;
+        if (categoryNameUpdate.length === 0) {
+            errorToast("Category Required!")
+        } else {
             document.getElementById('update-modal-close').click();
             showLoader();
-            let res = await axios.post("/update-category",{name:categoryName,id:updateID})
+            let res = await axios.post("/update-category", {
+                name: categoryNameUpdate,
+                id: categoryId
+            })
             hideLoader();
 
-            if(res.status===200 && res.data===1){
-                document.getElementById("update-form").reset();
-                successToast("Request success !")
+            if (res.status == 200 && res.data === 1) {
+                successToast(" Update Successfully!")
                 await getList();
+            } else {
+                errorToast("Update Failled!")
             }
-            else{
-                errorToast("Request fail !")
-            }
-
-
         }
 
-
-
     }
-
-
-
-</script> --}}
+</script>
