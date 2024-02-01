@@ -3,6 +3,7 @@
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Middleware\TokenVerifyMiddleware;
@@ -62,10 +63,19 @@ Route::post('/id-category', [CategoryController::class, 'CategoryId'])->Middlewa
 
 
 // ==============================================================================================
-//                                   categories Routes
+//                                   customers Routes
 // ==============================================================================================
 Route::post('/create-customer', [CustomerController::class, 'CustomerCreate'])->Middleware([TokenVerifyMiddleware::class]);
 Route::get('/list-customer', [CustomerController::class, 'CustomerList'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/update-customer', [CustomerController::class, 'CustomerUpdate'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/delete-customer', [CustomerController::class, 'CustomerDelete'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/id-customer', [CustomerController::class, 'CustomerId'])->Middleware([TokenVerifyMiddleware::class]);
+
+// ==============================================================================================
+//                                   customers Routes
+// ==============================================================================================
+Route::post('/create-product', [ProductController::class, 'ProductCreate'])->Middleware([TokenVerifyMiddleware::class]);
+Route::get('/list-product', [ProductController::class, 'ProductList'])->Middleware([TokenVerifyMiddleware::class]);
+Route::post('/update-product', [ProductController::class, 'ProductUpdate'])->Middleware([TokenVerifyMiddleware::class]);
+Route::post('/delete-product', [ProductController::class, 'ProductDelete'])->Middleware([TokenVerifyMiddleware::class]);
+Route::post('/id-product', [ProductController::class, 'ProductId'])->Middleware([TokenVerifyMiddleware::class]);
