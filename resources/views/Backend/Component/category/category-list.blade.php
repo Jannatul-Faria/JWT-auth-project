@@ -82,7 +82,7 @@
         //     ],
         //     lengthMenu: [5, 10, 15, 20]
         // })  
-        // you can also wrote this =>
+        // you can also this =>
         let table = new DataTable('#tableData', {
             order: [
                 [0, 'asc']
@@ -93,59 +93,3 @@
 
     }
 </script>
-
-
-
-
-
-
-{{-- <script>
-    getList();
-    async function getList() {
-
-
-        showLoader();
-        let res = await axios.get("/list-category");
-        hideLoader();
-
-        let tableList = $("#tableList");
-        let tableData = $("#tableData");
-
-        tableData.DataTable().destroy();
-        tableList.empty();
-
-        res.data.forEach(function(item, index) {
-            let row = `<tr>
-                    <td>${index+1}</td>
-                    <td>${item['name']}</td>
-                    <td>
-                        <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
-                        <button data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                 </tr>`
-            tableList.append(row)
-        })
-
-        $('.editBtn').on('click', async function() {
-            let id = $(this).data('id');
-            await FillUpUpdateForm(id)
-            $("#update-modal").modal('show');
-
-
-        })
-
-        $('.deleteBtn').on('click', function() {
-            let id = $(this).data('id');
-            $("#delete-modal").modal('show');
-            $("#deleteID").val(id);
-        })
-
-        new DataTable('#tableData', {
-            order: [
-                [0, 'desc']
-            ],
-            lengthMenu: [5, 10, 15, 20, 30]
-        });
-
-    }
-</script> --}}

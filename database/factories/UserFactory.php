@@ -3,8 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -12,20 +10,18 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class UserFactory extends Factory
 {
-    protected $model= User::class;
+    protected $model = User::class;
+
     public function definition(): array
     {
-      
+
         return [
             'firstName' => $this->faker->name,
             'lastName' => $this->faker->name,
-            'email' =>  $this->faker->safeEmail,
+            'email' => $this->faker->safeEmail,
             'mobile' => $this->faker->phoneNumber,
             'password' => $this->faker->password,
-        
 
         ];
     }
-    
-   
 }

@@ -3,24 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-          public function ProductPage():View{
+    public function ProductPage(): View
+    {
         return view('Backend.Pages.dashboard.product-page');
-     }
+    }
 
-   public function ProductList(Request $request){
-    $user_id= $request->header('id');
+    public function ProductList(Request $request)
+    {
+        $user_id = $request->header('id');
+
         return Product::where('user_id', $user_id)->get();
-   }
+    }
 
-    public function ProductCreate(Request $request){
-        $user_id=$request->header('id');
+    public function ProductCreate(Request $request)
+    {
+        $user_id = $request->header('id');
 
         //prepare file name
         $img = $request->file('img');
@@ -35,29 +38,31 @@ class ProductController extends Controller
 
         // save to database:
         return Product::create([
-            'name'=>$request->input('name'),
-            'price'=>$request->input('price'),
-            'unit'=>$request->input('unit'),
-            'img_url'=>$img_url,
-            'category_id'=>$request->input('category_id'),
-            'user_id'=>$user_id
+            'name' => $request->input('name'),
+            'price' => $request->input('price'),
+            'unit' => $request->input('unit'),
+            'img_url' => $img_url,
+            'category_id' => $request->input('category_id'),
+            'user_id' => $user_id,
         ]);
     }
 
-    public function ProductDelete(Request $request){
-        $Product_id=$request->input('id');
-        $user_id=$request->header('id');
-        $file_path = $request->input("file_path");
+    public function ProductDelete(Request $request)
+    {
+        $Product_id = $request->input('id');
+        $user_id = $request->header('id');
+        $file_path = $request->input('file_path');
         File::delete($file_path);
 
-        return Product::where('id',$Product_id)->where('user_id', $user_id)->delete();
+        return Product::where('id', $Product_id)->where('user_id', $user_id)->delete();
     }
 
-    public function ProductUpdate(Request $request){
-        $Product_id=$request->input('id');
-        $user_id=$request->header('id');
+    public function ProductUpdate(Request $request)
+    {
+        $Product_id = $request->input('id');
+        $user_id = $request->header('id');
 
-        if($request->hasFile('img')){
+        if ($request->hasFile('img')) {
             $img = $request->file('img');
 
             $t = time();
@@ -67,35 +72,36 @@ class ProductController extends Controller
             $img->move(public_path('uploads'), $img_name);
 
             //delete file:
-            $filePath = $request->input("file_path");
+            $filePath = $request->input('file_path');
             File::delete($filePath);
 
             //update file:
 
-             return Product::where('id',$Product_id)->where('user_id', $user_id)->update([
-            'name'=>$request->input('name'),
-            'price'=>$request->input('price'),
-            'unit'=>$request->input('unit'),
-            'img_url'=>$img_url,
-            'category_id'=>$request->input('category_id'),
-        ]);
-
-        }else{
             return Product::where('id', $Product_id)->where('user_id', $user_id)->update([
                 'name' => $request->input('name'),
                 'price' => $request->input('price'),
                 'unit' => $request->input('unit'),
-                'category_id' => $request->input('category_id')
+                'img_url' => $img_url,
+                'category_id' => $request->input('category_id'),
+            ]);
+
+        } else {
+            return Product::where('id', $Product_id)->where('user_id', $user_id)->update([
+                'name' => $request->input('name'),
+                'price' => $request->input('price'),
+                'unit' => $request->input('unit'),
+                'category_id' => $request->input('category_id'),
             ]);
         }
-        
+
     }
 
-    public function ProductId(Request $request){
+    public function ProductId(Request $request)
+    {
         $Product_id = $request->input('id');
         $user_id = $request->header('id');
 
         return Product::where('id', $Product_id)->where('user_id', $user_id)->first();
-    
+
     }
 }

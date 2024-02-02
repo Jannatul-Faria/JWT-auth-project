@@ -1,12 +1,13 @@
 <?php
 
-use GuzzleHttp\Middleware;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerifyMiddleware;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,6 @@ Route::post('/Reset-Password', [UserController::class, 'ResetPassword'])->Middle
 Route::get('/userProfile', [UserController::class, 'userprofile'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/updateprofile', [UserController::class, 'updateprofile'])->Middleware([TokenVerifyMiddleware::class]);
 
-
-
-
-
 // ==============================================================================================
 //                                  User Page Routes
 // ==============================================================================================
@@ -46,11 +43,11 @@ Route::get('/dashboard', [UserController::class, 'dashboardPage'])->Middleware([
 Route::get('/profile', [UserController::class, 'profile'])->Middleware([TokenVerifyMiddleware::class]);
 Route::get('/categoryPage', [CategoryController::class, 'CategoryPage'])->Middleware([TokenVerifyMiddleware::class]);
 Route::get('/customerPage', [CustomerController::class, 'CustomerPage'])->Middleware([TokenVerifyMiddleware::class]);
-
-
+Route::get('/productPage', [ProductController::class, 'ProductPage'])->Middleware([TokenVerifyMiddleware::class]);
+Route::get('/invoicePage', [InvoiceController::class, 'InvoicePage'])->Middleware([TokenVerifyMiddleware::class]);
+Route::get('/saletPage', [InvoiceController::class, 'SalePage'])->Middleware([TokenVerifyMiddleware::class]);
 
 Route::get('/logout', [UserController::class, 'logout']);
-
 
 // ==============================================================================================
 //                                   categories Routes
@@ -60,7 +57,6 @@ Route::get('/list-category', [CategoryController::class, 'CategoryList'])->Middl
 Route::post('/update-category', [CategoryController::class, 'CategoryUpdate'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/delete-category', [CategoryController::class, 'CategoryDelete'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/id-category', [CategoryController::class, 'CategoryId'])->Middleware([TokenVerifyMiddleware::class]);
-
 
 // ==============================================================================================
 //                                   customers Routes
@@ -72,10 +68,18 @@ Route::post('/delete-customer', [CustomerController::class, 'CustomerDelete'])->
 Route::post('/id-customer', [CustomerController::class, 'CustomerId'])->Middleware([TokenVerifyMiddleware::class]);
 
 // ==============================================================================================
-//                                   customers Routes
+//                                    Routes
 // ==============================================================================================
 Route::post('/create-product', [ProductController::class, 'ProductCreate'])->Middleware([TokenVerifyMiddleware::class]);
 Route::get('/list-product', [ProductController::class, 'ProductList'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/update-product', [ProductController::class, 'ProductUpdate'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/delete-product', [ProductController::class, 'ProductDelete'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/id-product', [ProductController::class, 'ProductId'])->Middleware([TokenVerifyMiddleware::class]);
+
+// ==============================================================================================
+//                                   invoive Routes
+// ==============================================================================================
+Route::post('/create-invoice', [InvoiceController::class, 'InvoiceCreate'])->Middleware([TokenVerifyMiddleware::class]);
+Route::post('/details-invoice', [InvoiceController::class, 'InvoiceDetails'])->Middleware([TokenVerifyMiddleware::class]);
+Route::get('/select-invoice', [InvoiceController::class, 'InvoiceSelect'])->Middleware([TokenVerifyMiddleware::class]);
+Route::post('/delete-invoice', [InvoiceController::class, 'InvoiceDelete'])->Middleware([TokenVerifyMiddleware::class]);
