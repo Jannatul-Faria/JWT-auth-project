@@ -75,27 +75,26 @@
     <div id="sideNavRef" class="side-nav-open">
 
         <a href="{{ url('/dashboard') }}" class="side-bar-item">
-            <i class="bi bi-graph-up"></i>
+            <i class="bi bi-house-gear-fill"></i>
             <span class="side-bar-item-caption">Dashboard</span>
         </a>
 
-        <a href="{{ url('/customerPage') }}" class="side-bar-item">
-            <i class="bi bi-people"></i>
-            <span class="side-bar-item-caption">Customer</span>
-        </a>
-
-        <a href="{{ url('/categoryPage') }}" class="side-bar-item">
-            <i class="bi bi-list-nested"></i>
-            <span class="side-bar-item-caption">Category</span>
-        </a>
-
         <a href="{{ url('/productPage') }}" class="side-bar-item">
-            <i class="bi bi-bag"></i>
+            <i class="bi bi-handbag-fill"></i>
             <span class="side-bar-item-caption">Product</span>
         </a>
 
+        <a href="{{ url('/categoryPage') }}" class="side-bar-item">
+            <i class="bi bi-tags-fill"></i>
+            <span class="side-bar-item-caption">Category</span>
+        </a>
+        <a href="{{ url('/customerPage') }}" class="side-bar-item">
+            <i class="bi bi-person-lines-fill"></i>
+            <span class="side-bar-item-caption">Customer</span>
+        </a>
+
         <a href="{{ url('/salePage') }}" class="side-bar-item">
-            <i class="bi bi-currency-dollar"></i>
+            <i class="bi bi-cart-check-fill"></i>
             <span class="side-bar-item-caption">Create Sale</span>
         </a>
 
@@ -105,7 +104,7 @@
         </a>
 
         <a href="{{ url('/reportPage') }}" class="side-bar-item">
-            <i class="bi bi-file-earmark-bar-graph"></i>
+            <i class="bi bi-clipboard2-data-fill"></i>
             <span class="side-bar-item-caption">Report</span>
         </a>
 

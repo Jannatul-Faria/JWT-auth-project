@@ -12,29 +12,32 @@ use Illuminate\View\View;
 
 class InvoiceController extends Controller
 {
-    public function InvoicePage(): View
+    public function InvoicePage():View
     {
         return view('Backend.Pages.dashboard.invoice-page');
     }
 
-    public function SelePage(): View
+    public function SalePage():View
     {
         return view('Backend.Pages.dashboard.sale-page');
     }
 
     public function InvoiceCreate(Request $request)
     {
+       
         DB::beginTransaction();
         try {
+            //  dd($request->all());
+             $user_id = $request->header('id');
+           
+           
+            $total = $request->total;
+            $discount = $request->discount;
+            $vat = $request->vat;
+            $payable = $request->payable;
 
-            $user_id = $request->header('id');
-            $total = $request->input('total');
-            $discount = $request->input('discount');
-            $vat = $request->input('vat');
-            $payable = $request->input('payable');
-
-            $customer_id = $request->input('customer_id');
-
+            $customer_id = $request->customer_id;
+             
             $invoice = Invoice::create([
                 'total' => $total,
                 'discount' => $discount,
@@ -43,7 +46,7 @@ class InvoiceController extends Controller
                 'user_id' => $user_id,
                 'customer_id' => $customer_id,
             ]);
-
+            
             $invoiceID = $invoice->id;
             $products = $request->input('products');
 
@@ -56,18 +59,19 @@ class InvoiceController extends Controller
                     'sale_price' => $EachProduct['sale_price'],
                 ]);
             }
+           
             DB::commit();
 
             return 1;
 
         } catch (Exception $e) {
             DB::rollBack();
-
-            return 0;
+            
+             return 0;
         }
     }
 
-    public function InvoiceSelect(Request $request)
+    public function InvoiceList(Request $request)
     {
         $user_id = $request->header('id');
 
@@ -77,19 +81,19 @@ class InvoiceController extends Controller
     public function InvoiceDetails(Request $request)
     {
         $user_id = $request->header('id');
-        $customerDetails = Customer::where('user_id', $user_id)->where('id', $request->input('cus_id'))->first();
+        $customerDetails = Customer::where('user_id', $user_id)->where('id', $request->input('customer_id'))->first();
 
-        $invoiceTotal = Invoice::where('user_id', $user_id)->where('id', $request->input('inv_id'))->first();
+        $invoiceTotal = Invoice::where('user_id', $user_id)->where('id', $request->input('invoice_id'))->first();
 
-        $invoiceProduct = InvoiceProduct::where('invoice_id', $request->input('cus_id'))
+        $invoiceProduct = InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
             ->where('user_id', $user_id)
             ->get();
 
-        return [
+        return array (
             'customer' => $customerDetails,
             'invoice' => $invoiceTotal,
             'product' => $invoiceProduct,
-        ];
+        );
     }
 
     public function InvoiceDelete(Request $request)
@@ -97,10 +101,10 @@ class InvoiceController extends Controller
         DB::beginTransaction();
         try {
             $user_id = $request->header('id');
-            InvoiceProduct::where('invoice_id', $request->input('inv_id'))
+            InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
                 ->where('user_id', $user_id)
                 ->delete();
-            Invoice::where('id', $request->input('inv_id'))->delete();
+            Invoice::where('id', $request->input('invoice_id'))->delete();
             DB::commit();
 
             return 1;

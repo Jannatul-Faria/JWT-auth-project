@@ -18,6 +18,11 @@
                             <a class="text-center ms-3 h6" href="{{ url('/sendOtp') }}">Forget Password</a>
                         </span>
                     </div>
+                    <br /> <br />
+                    <div class="damo">
+                        <p>Email:admin@gmail.com</p>
+                        <p>Password:admin</p>
+                    </div>
                 </div>
             </div>
         </div>

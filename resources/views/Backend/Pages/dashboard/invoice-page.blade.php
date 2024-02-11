@@ -1,4 +1,4 @@
-@extends('layout.sidenav-layout')
+@extends('Backend.layout.sidenav-layout')
 @section('content')
     @include('Backend.Component.invoice.invoice-list')
     @include('Backend.Component.invoice.invoice-delete')

@@ -1,24 +1,16 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
-use App\Http\Middleware\TokenVerifyMiddleware;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Middleware\TokenVerifyMiddleware;
+
+
 // ==============================================================================================
 //                                 Web Api Routes
 // ==============================================================================================
@@ -45,7 +37,7 @@ Route::get('/categoryPage', [CategoryController::class, 'CategoryPage'])->Middle
 Route::get('/customerPage', [CustomerController::class, 'CustomerPage'])->Middleware([TokenVerifyMiddleware::class]);
 Route::get('/productPage', [ProductController::class, 'ProductPage'])->Middleware([TokenVerifyMiddleware::class]);
 Route::get('/invoicePage', [InvoiceController::class, 'InvoicePage'])->Middleware([TokenVerifyMiddleware::class]);
-Route::get('/saletPage', [InvoiceController::class, 'SalePage'])->Middleware([TokenVerifyMiddleware::class]);
+Route::get('/salePage', [InvoiceController::class, 'SalePage'])->Middleware([TokenVerifyMiddleware::class]);
 
 Route::get('/logout', [UserController::class, 'logout']);
 
@@ -81,5 +73,6 @@ Route::post('/id-product', [ProductController::class, 'ProductId'])->Middleware(
 // ==============================================================================================
 Route::post('/create-invoice', [InvoiceController::class, 'InvoiceCreate'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/details-invoice', [InvoiceController::class, 'InvoiceDetails'])->Middleware([TokenVerifyMiddleware::class]);
-Route::get('/select-invoice', [InvoiceController::class, 'InvoiceSelect'])->Middleware([TokenVerifyMiddleware::class]);
+Route::get('/list-invoice', [InvoiceController::class, 'InvoiceList'])->Middleware([TokenVerifyMiddleware::class]);
 Route::post('/delete-invoice', [InvoiceController::class, 'InvoiceDelete'])->Middleware([TokenVerifyMiddleware::class]);
+
