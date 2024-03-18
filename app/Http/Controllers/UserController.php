@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\JWTToken;
-use App\Mail\OTPMail;
-use App\Models\User;
+use App\Models\Category;
+use App\Models\Product;
 use Exception;
+use App\Models\User;
+use App\Mail\OTPMail;
+use App\Helper\JWTToken;
+use App\Models\Customer;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -43,7 +46,10 @@ class UserController extends Controller
 
     public function dashboardPage(): View
     {
-        return view('Backend.Pages.dashboard.dashboard-page');
+        $products =Product::all();
+        $customers = Customer::all();
+        $categories = Category::all();
+        return view('Backend.Pages.dashboard.dashboard-page', compact('customers','products','categories'));
     }
 
     public function profile(): View

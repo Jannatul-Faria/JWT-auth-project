@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-lg-4 p-2">
+            <div class="col-md-3 col-lg-3 p-2">
                 <div class="shadow-sm h-100 bg-white rounded-3 p-3">
                     <table class="table table-sm w-100" id="customerTable">
                         <thead class="w-100">
@@ -35,7 +35,7 @@
             </div>
 
 
-            <div class="col-md-4 col-lg-4 p-2">
+            <div class="col-md-5 col-lg-5 p-2">
                 <div class="shadow-sm h-100 bg-white rounded-3 p-3">
                     <div class="row">
                         <div class="col-8">
@@ -43,7 +43,7 @@
                             <span class="text-bold text-dark">BILLED TO </span>
                             <p class="text-xs mx-0 my-1">Name: <span id="Cname"></span> </p>
                             <p class="text-xs mx-0 my-1">Email: <span id="Cemail"></span></p>
-                            <p class="text-xs mx-0 my-1">User ID: <span id="Cid"></span> </p>
+                            <p class="text-xs mx-0 my-1">User ID: <span id="CId"></span> </p>
                         </div>
                         <div class="col-4">
 
@@ -138,82 +138,11 @@
         </div>
     </div>
 
+
+
+
+
     <script>
-        async function CustomerList() {
-            let res = await axios.get('/list-customer');
-            let customerList = $('#customerList');
-            let customerTable = $('#customerTable');
-            customerTable.DataTable().destroy();
-            customerList.empty();
-
-            res.data.forEach(function(item, index) {
-                let row = `<tr>
-                         <td>${item['name']}</td>
-                         <td> <a data-name="${item['name']}" data-email="${item['email']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xxs px-2 py-1  btn-sm m-0" >Add</a></td>
-                    </tr>`
-                customerList.append(row)
-            })
-
-            $('.addCustomer').on('click', async function() {
-                let Cname = $(this).data('name');
-                let Cemail = $(this).data('email');
-                let Cid = $(this).data('id');
-
-                $('#Cname').text(Cname);
-                $('#Cemail').text(Cemail);
-                $('#Cid').text(Cid);
-            })
-
-            new DataTable('#customerTable', {
-                order: [
-                    [0, 'dece']
-                ],
-                scrollCollapse: false;
-
-            })
-
-        }
-
-        async function ProductList() {
-            let res = await axios.get('/list-product');
-            let productList = $('#productList');
-            let productTable = $('#productTable');
-            productTable.DataTable().destroy();
-            productList.empty();
-
-            res.data.forEach(function(item, index) {
-                let row = `<tr>
-                         <td> <img class="w-10" src="${item['img_url']}"/>${item['name']} (${item['price']}) </td>
-                         <td> <a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark addProduct  text-xxs px-2 py-1  btn-sm m-0" >Add</a></td>
-                    </tr>`
-                productList.append(row)
-            })
-
-            $('.addProduct').on('click', async function() {
-                let Pname = $(this).data('name');
-                let Pprice = $(this).data('price');
-                let Pid = $(this).data('id');
-
-                addModal(Pid, Pname, Pprice)
-            })
-
-            new DataTable('#customerTable', {
-                order: [
-                    [0, 'dece']
-                ],
-                scrollCollapse: false;
-                info: false;
-                lengthChange: false;
-
-            })
-
-
-        }
-    </script>
-
-
-
-    {{-- <script>
         (async () => {
             showLoader();
             await CustomerList();
@@ -310,7 +239,7 @@
                     qty: PQty,
                     sale_price: PTotalPrice
                 };
-                InvoiceItemList.push(item);
+                InvoiceItemList.push(item)
                 console.log(InvoiceItemList);
                 $('#create-modal').modal('hide')
                 ShowInvoiceItem();
@@ -338,7 +267,8 @@
             res.data.forEach(function(item, index) {
                 let row = `<tr class="text-xs">
                         <td><i class="bi bi-person"></i> ${item['name']}</td>
-                        <td><a data-name="${item['name']}" data-email="${item['email']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xxs px-2 py-1  btn-sm m-0">Add</a></td>
+                        <td><a data-name="${item['name']}" data-email="${item['email']}" data-id="${item['id']}"
+                             class="btn btn-outline-dark addCustomer  text-xxs px-2 py-1  btn-sm m-0">Add</a></td>
                      </tr>`
                 customerList.append(row)
             })
@@ -350,8 +280,8 @@
                 let CEmail = $(this).data('email');
                 let CId = $(this).data('id');
 
-                $("#CName").text(CName)
-                $("#CEmail").text(CEmail)
+                $("#Cname").text(CName)
+                $("#Cemail").text(CEmail)
                 $("#CId").text(CId)
 
             })
@@ -377,7 +307,8 @@
             res.data.forEach(function(item, index) {
                 let row = `<tr class="text-xs">
                         <td> <img class="w-10" src="${item['img_url']}"/> ${item['name']} ($ ${item['price']})</td>
-                        <td><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xxs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
+                        <td><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}"
+                             class="btn btn-outline-dark text-xxs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
                      </tr>`
                 productList.append(row)
             })
@@ -405,9 +336,9 @@
 
         async function createInvoice() {
             let total = document.getElementById('total').innerText;
-            let discount = document.getElementById('discount').innerText
-            let vat = document.getElementById('vat').innerText
-            let payable = document.getElementById('payable').innerText
+            let discount = document.getElementById('discount').innerText;
+            let vat = document.getElementById('vat').innerText;
+            let payable = document.getElementById('payable').innerText;
             let CId = document.getElementById('CId').innerText;
 
 
@@ -428,7 +359,7 @@
             } else {
 
                 showLoader();
-                let res = await axios.post("/invoice-create", Data)
+                let res = await axios.post("/create-invoice", Data)
                 hideLoader();
                 if (res.data === 1) {
                     window.location.href = '/invoicePage'
@@ -439,5 +370,5 @@
             }
 
         }
-    </script> --}}
+    </script>
 @endsection

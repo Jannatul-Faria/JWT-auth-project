@@ -11,16 +11,16 @@
                             <div class="col-12 p-1">
                                 <label class="form-label">Category Name *</label>
                                 <input type="text" class="form-control" id="categoryNameUpdate">
-                                <input class="" id="updateID">
+                                {{-- <input class="" id="updateID"> --}}
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="update-modal-close" class="btn bg-gradient-primary" data-bs-dismiss="modal"
+                <button id="update-modal-close" class="btn bg-gradient-danger" data-bs-dismiss="modal"
                     aria-label="Close">Close</button>
-                <button onclick="Update()" id="update-btn" class="btn bg-gradient-success">Update</button>
+                <button onclick="Update()" id="update-btn" class="btn bg-gradient-info">Update</button>
             </div>
         </div>
     </div>

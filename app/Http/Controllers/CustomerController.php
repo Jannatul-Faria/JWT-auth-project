@@ -10,6 +10,7 @@ class CustomerController extends Controller
 {
     public function CustomerPage(): View
     {
+        
         return view('Backend.Pages.dashboard.customer-page');
     }
 

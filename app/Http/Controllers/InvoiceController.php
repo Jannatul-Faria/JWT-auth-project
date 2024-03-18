@@ -26,11 +26,10 @@ class InvoiceController extends Controller
     {
        
         DB::beginTransaction();
+        
         try {
             //  dd($request->all());
-             $user_id = $request->header('id');
-           
-           
+            $user_id = $request->header('id');
             $total = $request->total;
             $discount = $request->discount;
             $vat = $request->vat;
@@ -80,20 +79,26 @@ class InvoiceController extends Controller
 
     public function InvoiceDetails(Request $request)
     {
+        try {
         $user_id = $request->header('id');
         $customerDetails = Customer::where('user_id', $user_id)->where('id', $request->input('customer_id'))->first();
 
         $invoiceTotal = Invoice::where('user_id', $user_id)->where('id', $request->input('invoice_id'))->first();
 
         $invoiceProduct = InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
-            ->where('user_id', $user_id)
-            ->get();
+            ->where('user_id', $user_id)->with('product')
+                ->get();
 
-        return array (
+        $rows=array (
             'customer' => $customerDetails,
             'invoice' => $invoiceTotal,
             'product' => $invoiceProduct,
         );
+         return response()->json(['status' => 'success', 'rows' => $rows]);
+         }
+        catch (Exception $e){
+            return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
+        }
     }
 
     public function InvoiceDelete(Request $request)

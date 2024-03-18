@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-7 animated fadeIn col-lg-6 center-screen">
-            <div class="card w-90  p-4">
+        <div class="col-md-8 animated fadeIn col-lg-6 center-screen">
+            <div class="card w-70  p-2">
                 <div class="card-body">
                     <h4>SIGN IN</h4>
                     <br />

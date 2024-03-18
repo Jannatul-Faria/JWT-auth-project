@@ -107,6 +107,10 @@
             <i class="bi bi-clipboard2-data-fill"></i>
             <span class="side-bar-item-caption">Report</span>
         </a>
+        <a href="{{ url('/logout') }}" class="side-bar-item text-danger">
+            <i class="bi bi-box-arrow-left"></i>
+            <span class="side-bar-item-caption">Logout</span>
+        </a>
 
 
     </div>
@@ -118,7 +122,7 @@
 
 
 
-    {{-- <script>
+    <script>
         function MenuBarClickHandler() {
             let sideNav = document.getElementById('sideNavRef');
             let content = document.getElementById('contentRef');
@@ -134,7 +138,7 @@
                 content.classList.add("content");
             }
         }
-    </script> --}}
+    </script>
 
 </body>
 
