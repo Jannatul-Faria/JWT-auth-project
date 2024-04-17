@@ -15,8 +15,8 @@
                             </div>
                         </div>
                         <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow float-end border-radius-md">
-                                <img class="w-100 " src="{{ asset('images/icon.svg') }}" />
+                            <div class="icon icon-shape  float-end border-radius-md">
+                                <img class="w-100 " src="{{ asset('images/cosmetics (2).png') }}" />
                             </div>
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                             </div>
                         </div>
                         <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow float-end border-radius-md">
-                                <img class="w-100 " src="{{ asset('images/icon.svg') }}" />
+                            <div class="icon icon-shape  float-end border-radius-md">
+                                <img class="w-100 " src="{{ asset('images/sell.png') }}" />
                             </div>
                         </div>
                     </div>
@@ -62,8 +62,8 @@
                         </div>
 
                         <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow float-end border-radius-md">
-                                <img class="w-100 " src="{{ asset('images/icon.svg') }}" />
+                            <div class="icon icon-shape   border-radius-md">
+                                <img class="w-100 " src="{{ asset('images/makeover.png') }}" />
                             </div>
                         </div>
 
@@ -82,12 +82,12 @@
                                     <span id="invoice"></span>
                                 </h5>
                                 <p class="mb-0 text-sm">Invoice</p>
-                                {{-- <h6>( {{ count($invoices) }})</h6> --}}
+                                {{-- <h6>( {{ count($invoice) }})</h6> --}}
                             </div>
                         </div>
                         <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow float-end border-radius-md">
-                                <img class="w-100 " src="{{ asset('images/icon.svg') }}" />
+                            <div class="icon icon-shape float-end border-radius-md">
+                                <img class="w-100 " src="{{ asset('images/invoice.png') }}" />
                             </div>
                         </div>
                     </div>
@@ -110,8 +110,8 @@
                             </div>
                         </div>
                         <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow float-end border-radius-md">
-                                <img class="w-100 " src="{{ asset('images/icon.svg') }}" />
+                            <div class="icon icon-shape float-end border-radius-md">
+                                <img class="w-100 " src="{{ asset('images/sale.png') }}" />
                             </div>
                         </div>
                     </div>
@@ -134,8 +134,8 @@
                             </div>
                         </div>
                         <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow float-end border-radius-md">
-                                <img class="w-100 " src="{{ asset('images/icon.svg') }}" />
+                            <div class="icon icon-shape float-end border-radius-md">
+                                <img class="w-100 " src="{{ asset('images/budget.png') }}" />
                             </div>
                         </div>
                     </div>
@@ -158,8 +158,8 @@
                             </div>
                         </div>
                         <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow float-end border-radius-md">
-                                <img class="w-100 " src="{{ asset('images/icon.svg') }}" />
+                            <div class="icon icon-shape  float-end border-radius-md">
+                                <img class="w-100 " src="{{ asset('images/voucher.png') }}" />
                             </div>
                         </div>
                     </div>

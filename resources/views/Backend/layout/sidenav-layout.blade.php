@@ -56,7 +56,7 @@
                     <div class="user-dropdown-content ">
                         <div class="mt-4 text-center">
                             <img class="icon-nav-img" src="{{ asset('images/pp.png') }}" alt="" />
-                            <h6>User Name</h6>
+                            {{-- <h6>{{ $users->firstName }}</h6> --}}
                             <hr class="user-dropdown-divider  p-0" />
                         </div>
                         <a href="{{ url('/profile') }}" class="side-bar-item">

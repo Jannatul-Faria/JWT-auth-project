@@ -1,66 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# Point Of Sale Application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This repository contains a Laravel-based Point of Sale (POS) application with JWT token-based authentication, Axios for HTTP requests, and Bootstrap for styling.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
+Follow these steps to get the project up and running on your local machine:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Prerequisites
+- PHP (>=8.2)
+- Composer
+- git
+- MySQL or another database of your choice
 
-## Learning Laravel
+## Step 1: Clone the Repository
+ ```bash
+git clone https://github.com/Jannatul-Faria/POS_Application.git
+cd POS_Application
+```
+## Step 2: Install Composer Dependencies
+ ```bash
+composer install
+```
+## Step 3: Set Up Environment Variables
+- Copy the .env.example file to .env.
+- Update the database connection details in the .env file.
+ ```bash
+cp .env.example .env
+```
+### Step 4: Generate Application Key
+```
+php artisan key:generate
+```
+### Step 5: Run Migrations and Seeders
+```
+php artisan migrate
+php artisan db:seed
+```
+### Step 6: Start the Development Server
+```
+php artisan serve
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+### Usage
+Access the application by visiting http://localhost:8000/dashboard in your web browser.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Additional Notes
+- Make sure your database server is running and accessible.
+- Adjust the .env file with your database credentials and other settings.
+- You may need to configure a virtual host or adjust the server configuration based on your setup (e.g., Apache, Nginx).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Features Overview
+- Product Category Listing
+- Product Listing
+- Sales & Invoice Management
+- Business Reporting
+- Multi-user System for Business Profiles
+- Authentication: JWT token-based authentication for secure user sessions.
+- API Requests: Axios is used for making asynchronous HTTP requests to the Laravel backend.
+- Styling: Bootstrap is included for responsive and clean UI components.
+### Database Designing
+<img src="public\images\pos-application.png" alt="">
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Phase 01: User Authentication Backend Features
+1. <b> User Registration</b> (Endpoint)
+2. <b> User Login & JWT Token Generation</b> (Endpoint)
+3. <b> Password Recovery Stage 01:</b> Sending OTP Code to Email (Endpoint)
+4.  <b> Password Recovery Stage 02:</b> Verify OTP Code (Endpoint)
+5.  <b> Password Recovery Stage 03:</b> Allow User to Reset Password (Endpoint)
+6.  <b>Get User Profile Details </b>(Endpoint)
+7.  <b>Update User Profile Details</b>(Endpoint)
+### Phase 02: Product Categories
+1. <b>Category Management Backend Development</b>
+2. <b>Category Management Frontend Development</b>
+### Phase 03: Customers
+1. <b>Plan Customer Table</b>
+2. <b>Customer Management Backend Development</b>
+3. <b>Customer Management Frontend Development</b>
+### Phase 04: Products
+1. <b>Plan Product Table</b>
+2. <b>Product Management Backend Development</b>
+3. <b>Product Management Frontend Development</b>
+### Phase 05: Invoicing
+1. <b>Plan Invoice  Table</b>
+2. <b>Invoice  Management Backend Development</b>
+3. <b>Invoice  Management Frontend Development</b>
+### Phase 06: Dashboard & Reporting
+1. <b>Dashboard Summary: </b>Total Customers, Products, Sales, Categories
+2. <b>Business Reports:</b> Date-to-Date Sales Report
+### Contributing
+Feel free to contribute to this project by forking the repository and submitting pull requests. Please follow the existing code style and conventions.
