@@ -84,12 +84,14 @@ Access the application by visiting http://localhost:8000/dashboard in your web b
 2. <b>Product Management Backend Development</b>
 3. <b>Product Management Frontend Development</b>
 <img src="public\images\pos-product.png" alt="">
+
 ### Phase 05: Invoicing
 1. <b>Plan Invoice  Table</b>
 2. <b>Invoice  Management Backend Development</b>
 3. <b>Invoice  Management Frontend Development</b>
 <img src="public\images\create-pos-sale.png" alt="">
 <img src="public\images\pos-invoice.png" alt="">
+
 ### Phase 06: Dashboard & Reporting
 1. <b>Dashboard Summary: </b>Total Customers, Products, Sales, Categories
 <img src="public\images\project1.png" alt="">
