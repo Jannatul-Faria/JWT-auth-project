@@ -19,6 +19,7 @@ class CustomerFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->safeEmail,
             'mobile' => $this->faker->phoneNumber,
+            
             'user_id' => User::factory(),
         ];
     }

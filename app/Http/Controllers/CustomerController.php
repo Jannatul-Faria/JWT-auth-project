@@ -10,8 +10,8 @@ class CustomerController extends Controller
 {
     public function CustomerPage(): View
     {
-        
-        return view('Backend.Pages.dashboard.customer-page');
+        $customers = Customer::get();
+        return view('Backend.Pages.dashboard.customer-page', compact('customers'));
     }
 
     public function CustomerList(Request $request)
