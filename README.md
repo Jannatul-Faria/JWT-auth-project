@@ -1,5 +1,4 @@
 
-
 # Point Of Sale Application
 
 This repository contains a Laravel-based Point of Sale (POS) application with JWT token-based authentication, Axios for HTTP requests, and Bootstrap for styling.
